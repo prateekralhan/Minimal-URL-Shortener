@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="text-center mb-4"> ✨ Let me shorten your URLs 🔗 </h1>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-9">
+            <form method="post" action="{{url_for('index')}}">
+            <div class="form-floating mb-4">
+                <input type="text" name="url" id="url"
+                    placeholder="Enter looooooooooooong URL" class="form-control"
+                    value="{{ request.form['url'] }}" autofocus></input>
+                <label for="url">🔗 URL</label>
+            </div>
+            <div class="form-floating mb-4">
+                <input type="text" name="custom_id" id="custom_id"
+                    placeholder="Want to customise? (optional)" class="form-control"
+                    value="{{ request.form['custom_id'] }}"></input>
+                <label for="custom_id">🔗 Custom Short ID </label>
+            </div>
+
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-lg btn-dark">💫 Shorten 🛠</button>
+            </div>
+            </form>
+
+            {% if short_url %}
+            <br>
+            <br>
+            <h3 class="text-center mt-5">
+                <p float="center" >
+                    <a href="{{ short_url }}" target="_blank"  style="color:black;">🔗👉 {{ short_url }} 👈🔗</a>
+                </p>
+            </h3>
+            {% endif %}
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+{% endblock %}
